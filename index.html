@@ -6,171 +6,292 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Portfolio</title>
 
+ <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <!-- External CSS file -->
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
 
-  <!-- Navigation bar with section links and theme toggle button -->
+  <!-- Navigation bar -->
   <nav class="nav">
-    <a class="brand" href="#top">My Portfolio</a>
-    <div class="nav-links">
+  <div class="nav-inner">
+    <a class="brand" href="#about">
+  <span class="brand-icon">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M12 2L13.8 8.2L20 10L13.8 11.8L12 18L10.2 11.8L4 10L10.2 8.2L12 2Z" />
+      <path d="M5 16L5.9 18.1L8 19L5.9 19.9L5 22L4.1 19.9L2 19L4.1 18.1L5 16Z" />
+    </svg>
+  </span>
+  <span class="brand-text">Naba</span>
+</a>
+
+    <div class="nav-center">
+      <a href="#top">Home</a>
       <a href="#about">About</a>
       <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
-
-      <!-- Button used to switch between light and dark mode -->
-      <button id="themeBtn" class="btn small" type="button" aria-label="Toggle theme">
-        🌙 Theme
-      </button>
     </div>
-  </nav>
 
-  <!-- About section with greeting, personal introduction, skills, and links -->
-  <section id="about" class="section about-modern">
-    <div class="container about-box">
+    <div class="nav-actions">
+      <button id="themeBtn" class="theme-circle" type="button" aria-label="Toggle theme">
+  <span class="theme-icon sun-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="4"></circle>
+      <path d="M12 2V5"></path>
+      <path d="M12 19V22"></path>
+      <path d="M2 12H5"></path>
+      <path d="M19 12H22"></path>
+      <path d="M4.9 4.9L7 7"></path>
+      <path d="M17 17L19.1 19.1"></path>
+      <path d="M4.9 19.1L7 17"></path>
+      <path d="M17 7L19.1 4.9"></path>
+    </svg>
+  </span>
 
-      <!-- Dynamic greeting text updated by JavaScript -->
-      <p id="greeting" class="pill">Hello!</p>
-
-      <h2 class="about-heading">About Me</h2>
-      <h3 class="about-name">Naba Alali</h3>
-
-      <!-- Short labels that summarize role/interests -->
-      <div class="about-badges">
-        <span class="about-badge">Software Engineering Student</span>
-        <span class="about-badge">Web Development & UI/UX 💡</span>
-      </div>
-
-      <!-- Main introduction paragraph -->
-      <p class="about-text">
-        I am a Software Engineering student passionate about web development and UI/UX design. I enjoy creating responsive applications that are both functional and visually appealing.
-        I am continuously improving my technical and design skills to build better user experiences.
-      </p>
-
-      <!-- Skills list shown as small badges -->
-      <div class="about-skills">
-        <span>HTML</span>
-        <span>CSS</span>
-        <span>JavaScript</span>
-        <span>Responsive Design</span>
-      </div>
-
-      <!-- Additional profile information -->
-      <div class="about-info">
-        <p>📍 <strong>Location:</strong> Dhahran</p>
-        <p>🎨 <strong>Focus:</strong> Front-end basics</p>
-        <p>💻 <strong>Languages:</strong> HTML • CSS • JS</p>
-      </div>
-
-      <!-- External links to professional profiles -->
-      <div class="about-links">
-        <a href="https://github.com/Naba-Alali" target="_blank">GitHub</a>
-        <a href="https://linkedin.com/in/naba-alali" target="_blank">LinkedIn</a>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Projects section with filter buttons and project cards -->
-  <section id="projects" class="section alt">
-    <div class="container projects-section">
-      <h2 class="projects-title">Projects</h2>
-      <p class="projects-subtitle">I’ve worked on many projects. Here are a few of them.</p>
-
-      <!-- Filter buttons used by JavaScript to show/hide projects by category -->
-      <div class="project-filters">
-        <button class="filter-btn active" type="button" data-filter="all">All</button>
-        <button class="filter-btn" type="button" data-filter="web">WEB APP'S</button>
-        <button class="filter-btn" type="button" data-filter="uiux">UI/UX Design</button>
-      </div>
-
-      <!-- Projects grid -->
-      <div class="projects-grid">
-
-        <!-- Project card: category is used by filter logic in JavaScript -->
-        <article class="project-card" data-category="web">
-          <div class="project-image-box">
-            <img src="assets/images/Screenshot 2026-02-14 172033.png" alt="Horse App project screenshot" class="project-image">
-          </div>
-
-          <div class="project-content">
-            <!-- Technology tags -->
-            <div class="project-tags">
-              <span>Python</span>
-              <span>SQL</span>
-              <span>DataBase</span>
-            </div>
-
-            <h3>Horse App</h3>
-            <p>A Horse Racing Database System designed to manage and organize racing information.</p>
-
-            <!-- Opens modal with more project details -->
-            <button class="btn small" type="button" onclick="showProject('Horse App')">
-              Details
-            </button>
-          </div>
-        </article>
-
-        <!-- Second project card -->
-        <article class="project-card" data-category="uiux">
-          <div class="project-image-box">
-            <img src="assets/images/Screenshot 2026-02-14 232745.png" alt="Club Zone project screenshot" class="project-image">
-          </div>
-
-          <div class="project-content">
-            <div class="project-tags">
-              <span>UI/UX</span>
-              <span>Java</span>
-              <span>Figma</span>
-            </div>
-
-            <h3>Club Zone</h3>
-            <p>A club management platform that connects students, clubs, and events in one place.</p>
-
-            <!-- Opens modal with more project details -->
-            <button class="btn small" type="button" onclick="showProject('Club Zone')">
-              Details
-            </button>
-          </div>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Modal used to display additional project information -->
-  <!-- Clicking outside the modal content closes it -->
-  <div id="projectModal" class="modal" onclick="if(event.target.id==='projectModal') closeModal()">
-    <div class="modal-content">
-      <!-- Close button for modal -->
-      <button class="close-btn" type="button" onclick="closeModal()">×</button>
-
-      <!-- Content is filled dynamically by JavaScript -->
-      <h2 id="modalTitle"></h2>
-      <p id="modalDescription"></p>
+  <span class="theme-icon moon-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none">
+      <path d="M21 12.8A9 9 0 1 1 11.2 3A7 7 0 1 0 21 12.8Z"></path>
+    </svg>
+  </span>
+</button>
+      <a href="#contact" class="talk-btn">Let's talk</a>
     </div>
   </div>
+</nav>
 
-  <!-- Contact form with client-side validation -->
+
+
+
+<!-- Home Section -->
+<section id="top" class="hero-section">
+  <div class="container hero-grid">
+
+    <!-- Left side -->
+    <div class="hero-left">
+      
+      <p class="hero-intro">Hey there, I'm</p>
+
+      <h1 class="hero-name">Naba</h1>
+
+      <p class="hero-description">
+        Software Engineer &amp; Tech Enthusiast —
+        crafting mobile, web, and data experiences with care.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="https://github.com/Naba-Alali" target="_blank" rel="noopener" class="hero-btn">GitHub</a>
+        <a href="https://linkedin.com/in/naba-alali" target="_blank" rel="noopener" class="hero-btn">LinkedIn</a>
+        <a href="#contact" class="hero-btn">Email</a>
+      </div>
+    </div>
+
+    <!-- Right side -->
+    <div class="hero-right">
+      <div class="code-card">
+        <div class="code-top">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot blue"></span>
+          <span class="file-name">~/portfolio/about.ts</span>
+          <span class="file-type">TS</span>
+        </div>
+
+        <div class="code-body">
+<pre><code><span class="line-num">1</span> <span class="kw">const</span> <span class="var">naba</span> = {
+<span class="line-num">2</span>   role: <span class="str">'Software Engineering Student'</span>,
+<span class="line-num">3</span>   focus: [<span class="str">'web'</span>, <span class="str">'ui/ux'</span>, <span class="str">'frontend'</span>],
+<span class="line-num">4</span>   skills: [<span class="str">'HTML'</span>, <span class="str">'CSS'</span>, <span class="str">'JavaScript'</span>],
+<span class="line-num">5</span>   location: <span class="str">'Dhahran'</span>,
+<span class="line-num">6</span>   loves: <span class="str">'clean design + good user experience'</span>,
+<span class="line-num">7</span>   status: <span class="str">'building better projects'</span>
+<span class="line-num">8</span> };
+
+<span class="line-num">9</span> <span class="var">naba</span>.<span class="fn">create</span>();
+</code></pre>
+        </div>
+
+        <div class="code-footer">
+          <span>connected</span>
+          <span>UTF-8 • Portfolio</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+  <!-- About Section -->
+<section id="about" class="about-section">
+  <div class="container about-grid">
+
+    <!-- Left side -->
+    <div class="about-label">
+      <p class="about-number">// 01</p>
+      <h2 class="about-big-title">About me</h2>
+    </div>
+
+    <!-- Right side -->
+    <div class="about-content">
+      <p class="about-paragraph">
+        I'm a software engineering student with a strong focus on mobile and web development
+        and a growing passion for data science.
+      </p>
+
+      <p class="about-paragraph">
+        I enjoy building real-world projects and improving my design and development skills.
+        I believe great software is built with creativity, problem-solving, and care for the user.
+      </p>
+
+      <div class="about-stats">
+        <div class="stat-card">
+          <h3>3+</h3>
+          <p>Skills</p>
+        </div>
+
+        <div class="stat-card">
+          <h3>2</h3>
+          <p>Projects</p>
+        </div>
+
+        <div class="stat-card">
+          <h3>2+</h3>
+          <p>Platforms</p>
+        </div>
+
+        <div class="stat-card">
+          <h3>∞</h3>
+          <p>Ideas</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+  
+
+  <!-- Projects Section -->
+  <!-- Projects Section -->
+<section id="projects" class="projects-modern-section">
+  <div class="container projects-modern-wrapper">
+
+    <!-- Top heading area -->
+    <div class="projects-modern-head">
+      <div class="projects-modern-title-box">
+        <p class="projects-number">// 02</p>
+        <h2 class="projects-modern-title">Selected projects</h2>
+      </div>
+
+      <div class="projects-modern-text">
+        <p>
+          A selection of projects I worked on in web development and UI/UX design,
+          focused on building useful and visually clear digital experiences.
+        </p>
+      </div>
+    </div>
+
+    <!-- Filter buttons -->
+    <div class="project-filters">
+      <button class="filter-btn active" type="button" data-filter="all">All</button>
+      <button class="filter-btn" type="button" data-filter="web">WEB APP'S</button>
+      <button class="filter-btn" type="button" data-filter="uiux">UI/UX Design</button>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="projects-modern-grid">
+
+      <!-- Project 1 -->
+      <article class="project-modern-card" data-category="web">
+        <div class="project-modern-image-box">
+          <img src="assets/images/Horse-App.png" alt="Horse App project screenshot" class="project-modern-image" />
+        </div>
+
+        <div class="project-modern-content">
+          <div class="project-modern-top">
+            <h3>Horse App</h3>
+
+            <div class="project-modern-icons">
+              <a href="https://github.com/Naba-Alali" target="_blank" rel="noopener" class="project-icon-btn">GitHub</a>
+            </div>
+          </div>
+
+          <p>
+            A Horse Racing Database System designed to manage and organize racing information.
+          </p>
+
+          <div class="project-tags">
+            <span>Python</span>
+            <span>SQL</span>
+            <span>Database</span>
+          </div>
+
+          <button class="project-more-btn" type="button" onclick="showProject('Horse App')">
+            More Details
+          </button>
+        </div>
+      </article>
+
+      <!-- Project 2 -->
+      <article class="project-modern-card" data-category="uiux">
+        <div class="project-modern-image-box">
+          <img src="assets/images/Club-Zone.png" alt="Club Zone project screenshot" class="project-modern-image" />
+        </div>
+
+        <div class="project-modern-content">
+          <div class="project-modern-top">
+            <h3>Club Zone</h3>
+
+            <div class="project-modern-icons">
+              <a href="https://github.com/Naba-Alali" target="_blank" rel="noopener" class="project-icon-btn">GitHub</a>
+            </div>
+          </div>
+
+          <p>
+            A club management platform that connects students, clubs, and events in one place.
+          </p>
+
+          <div class="project-tags">
+            <span>UI/UX</span>
+            <span>Java</span>
+            <span>Figma</span>
+          </div>
+
+          <button class="project-more-btn" type="button" onclick="showProject('Club Zone')">
+            More Details
+          </button>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+
+  <!-- Contact Section -->
   <section id="contact" class="section">
     <div class="container">
       <h2>Contact</h2>
 
-      <!-- novalidate disables browser default validation so custom JS validation can be used -->
       <form id="contactForm" class="card form" novalidate>
         <div class="two">
           <div>
             <label for="name">Name</label>
             <input id="name" name="name" type="text" placeholder="Your name" required />
-            <!-- Error message shown by JavaScript -->
             <small class="error" id="nameErr"></small>
           </div>
 
           <div>
             <label for="email">Email</label>
             <input id="email" name="email" type="email" placeholder="you@example.com" required />
-            <!-- Error message shown by JavaScript -->
             <small class="error" id="emailErr"></small>
           </div>
         </div>
@@ -178,16 +299,12 @@
         <div>
           <label for="message">Message</label>
           <textarea id="message" name="message" rows="5" placeholder="Write your message..." required></textarea>
-          <!-- Error message shown by JavaScript -->
           <small class="error" id="msgErr"></small>
         </div>
 
-        <!-- Form buttons and dynamic status message -->
         <div class="form-actions">
           <button class="btn" type="submit">Send</button>
           <button class="btn outline" type="reset">Clear</button>
-
-          <!-- Updated by JavaScript with sending / success / error messages -->
           <span id="formStatus" class="status" aria-live="polite"></span>
         </div>
       </form>
@@ -201,7 +318,7 @@
     </div>
   </footer>
 
-  <!-- Back to top button appears when scrolling down -->
+  <!-- Back to top button -->
   <button id="toTop" class="to-top" type="button">Back to top ↑</button>
 
   <!-- External JavaScript file -->

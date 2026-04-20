@@ -6,20 +6,14 @@ function setTheme(theme) {
   localStorage.setItem("theme", theme);
 }
 
-// Returns greeting message based on current time
-function getGreeting() {
-  const hour = new Date().getHours();
-  if (hour < 12) return "Good morning 👋";
-  if (hour < 18) return "Good afternoon 👋";
-  return "Good evening 👋";
-}
+
 
 // ===== On load =====
 const savedTheme = localStorage.getItem("theme");
 if (savedTheme) setTheme(savedTheme);
 
 document.getElementById("year").textContent = new Date().getFullYear();
-document.getElementById("greeting").textContent = getGreeting();
+
 
 // Toggle theme when user clicks theme button
 document.getElementById("themeBtn").addEventListener("click", () => {
