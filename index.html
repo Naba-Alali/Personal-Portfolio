@@ -78,7 +78,7 @@
       <h1 class="hero-name">Naba</h1>
 
       <p class="hero-description">
-        Software Engineer &amp; Tech Enthusiast —
+        Software Engineer Student&amp; Tech Enthusiast,
         crafting mobile, web, and data experiences with care.
       </p>
 
@@ -101,16 +101,9 @@
         </div>
 
         <div class="code-body">
-<pre><code><span class="line-num">1</span> <span class="kw">const</span> <span class="var">naba</span> = {
-<span class="line-num">2</span>   role: <span class="str">'Software Engineering Student'</span>,
-<span class="line-num">3</span>   focus: [<span class="str">'web'</span>, <span class="str">'ui/ux'</span>, <span class="str">'frontend'</span>],
-<span class="line-num">4</span>   skills: [<span class="str">'HTML'</span>, <span class="str">'CSS'</span>, <span class="str">'JavaScript'</span>],
-<span class="line-num">5</span>   location: <span class="str">'Dhahran'</span>,
-<span class="line-num">6</span>   loves: <span class="str">'clean design + good user experience'</span>,
-<span class="line-num">7</span>   status: <span class="str">'building better projects'</span>
-<span class="line-num">8</span> };
-
-<span class="line-num">9</span> <span class="var">naba</span>.<span class="fn">create</span>();
+<div class="code-body">
+  <pre><code id="codeContent"></code></pre>
+</div>
 </code></pre>
         </div>
 
@@ -134,7 +127,7 @@
 
     <!-- Left side -->
     <div class="about-label">
-      <p class="about-number">// 01</p>
+      
       <h2 class="about-big-title">About me</h2>
     </div>
 
@@ -153,22 +146,22 @@
       <div class="about-stats">
         <div class="stat-card">
           <h3>3+</h3>
-          <p>Skills</p>
-        </div>
-
-        <div class="stat-card">
-          <h3>2</h3>
           <p>Projects</p>
         </div>
 
         <div class="stat-card">
-          <h3>2+</h3>
-          <p>Platforms</p>
+          <h3>6+</h3>
+          <p>Technologies</p>
+        </div>
+
+        <div class="stat-card">
+          <h3>5</h3>
+          <p>Activites</p>
         </div>
 
         <div class="stat-card">
           <h3>∞</h3>
-          <p>Ideas</p>
+          <p>Learning</p>
         </div>
       </div>
     </div>
@@ -178,38 +171,25 @@
 
   
 
-  <!-- Projects Section -->
-  <!-- Projects Section -->
+ <!-- Projects Section -->
 <section id="projects" class="projects-modern-section">
   <div class="container projects-modern-wrapper">
 
-    <!-- Top heading area -->
     <div class="projects-modern-head">
       <div class="projects-modern-title-box">
-        <p class="projects-number">// 02</p>
-        <h2 class="projects-modern-title">Selected projects</h2>
-      </div>
-
-      <div class="projects-modern-text">
-        <p>
-          A selection of projects I worked on in web development and UI/UX design,
-          focused on building useful and visually clear digital experiences.
-        </p>
+        <h2 class="projects-modern-title">Projects</h2>
       </div>
     </div>
 
-    <!-- Filter buttons -->
     <div class="project-filters">
       <button class="filter-btn active" type="button" data-filter="all">All</button>
       <button class="filter-btn" type="button" data-filter="web">WEB APP'S</button>
       <button class="filter-btn" type="button" data-filter="uiux">UI/UX Design</button>
     </div>
 
-    <!-- Projects Grid -->
     <div class="projects-modern-grid">
 
-      <!-- Project 1 -->
-      <article class="project-modern-card" data-category="web">
+      <article class="project-card project-modern-card" data-category="web">
         <div class="project-modern-image-box">
           <img src="assets/images/Horse-App.png" alt="Horse App project screenshot" class="project-modern-image" />
         </div>
@@ -217,10 +197,7 @@
         <div class="project-modern-content">
           <div class="project-modern-top">
             <h3>Horse App</h3>
-
-            <div class="project-modern-icons">
-              <a href="https://github.com/Naba-Alali" target="_blank" rel="noopener" class="project-icon-btn">GitHub</a>
-            </div>
+            <span class="project-year">2025</span>
           </div>
 
           <p>
@@ -239,8 +216,7 @@
         </div>
       </article>
 
-      <!-- Project 2 -->
-      <article class="project-modern-card" data-category="uiux">
+      <article class="project-card project-modern-card" data-category="uiux">
         <div class="project-modern-image-box">
           <img src="assets/images/Club-Zone.png" alt="Club Zone project screenshot" class="project-modern-image" />
         </div>
@@ -248,10 +224,7 @@
         <div class="project-modern-content">
           <div class="project-modern-top">
             <h3>Club Zone</h3>
-
-            <div class="project-modern-icons">
-              <a href="https://github.com/Naba-Alali" target="_blank" rel="noopener" class="project-icon-btn">GitHub</a>
-            </div>
+            <span class="project-year">2026</span>
           </div>
 
           <p>
@@ -273,6 +246,26 @@
     </div>
   </div>
 </section>
+
+
+
+
+<div id="projectModal" class="project-modal" onclick="if(event.target.id==='projectModal') closeModal()">
+  <div class="project-modal-card">
+    <button class="project-modal-close" type="button" onclick="closeModal()">×</button>
+
+    <p id="modalMeta" class="project-modal-meta"></p>
+    <h2 id="modalTitle" class="project-modal-title"></h2>
+    <p id="modalDescription" class="project-modal-description"></p>
+
+    <div class="project-modal-section">
+      <h3>Highlights</h3>
+      <ul id="modalHighlights" class="project-modal-highlights"></ul>
+    </div>
+
+    <div id="modalTags" class="project-modal-tags"></div>
+  </div>
+</div>
 
 
 

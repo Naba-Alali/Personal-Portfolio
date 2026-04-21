@@ -22,25 +22,25 @@
 }
 
 [data-theme="light"]{
-  --bg: #f1ece5;
-  --card: #ffffff;
-  --text: #000000;
-  --muted: #6f6f6f;
-  --border: #e5e5e5;
-  --accent: #7b61ff;
-  --accent-2: #38bdf8;
-  --section-alt: #f0eeea;
-  --shadow: 0 8px 20px rgba(0,0,0,0.04);
+  --bg: #f4f5fb;          /* خلفية الصفحة الأساسية */
+  --card: #fbfbfe;        /* الكروت */
+  --text: #111321;        /* النص الأساسي */
+  --muted: #5f6485;       /* النص الثانوي */
+  --border: #d9dced;      /* الحدود */
+  --accent: #7b61ff;      /* البنفسجي */
+  --accent-2: #38bdf8;    /* الأزرق */
+  --section-alt: #f7f8fd; /* السكاشن الثانوية */
+  --shadow: 0 10px 30px rgba(22, 26, 58, 0.08);
 
-  /* Header مخصوص للايت */
+  /* Header */
   --nav-glow: none;
-  --nav-border: rgba(0,0,0,0.05);
-  --nav-pill-bg: #ffffff;
-  --nav-pill-border: #e5e5e5;
-  --nav-pill-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  --theme-btn-bg: #ffffff;
-  --theme-btn-border: #e5e5e5;
-  --theme-btn-color: #7b61ff;
+  --nav-border: rgba(17,19,33,0.05);
+  --nav-pill-bg: rgba(255,255,255,0.72);
+  --nav-pill-border: rgba(17,19,33,0.08);
+  --nav-pill-shadow: 0 8px 20px rgba(22, 26, 58, 0.05);
+  --theme-btn-bg: rgba(255,255,255,0.78);
+  --theme-btn-border: rgba(17,19,33,0.08);
+  --theme-btn-color: #6f63ff;
 }
 
 /* ===== Global ===== */
@@ -55,11 +55,13 @@ html{
 body{
   margin: 0;
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  background: var(--bg);
+  background:
+    radial-gradient(circle at 18% 88%, rgba(56, 189, 248, 0.10), transparent 20%),
+    radial-gradient(circle at 62% 12%, rgba(123, 97, 255, 0.08), transparent 22%),
+    var(--bg);
   color: var(--text);
   line-height: 1.6;
 }
-
 .container{
   width: min(1100px, 92%);
   margin: 0 auto;
@@ -437,45 +439,7 @@ h2{
   }
 }
 
-/* ===== Quote Section ===== */
-.quote-section{
-  text-align: center;
-}
 
-.quotes-title{
-  font-size: 48px;
-  margin-bottom: 10px;
-}
-
-.quotes-subtitle{
-  color: var(--muted);
-  margin-bottom: 24px;
-}
-
-.quote-card{
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 30px 24px;
-  text-align: center;
-}
-
-#quoteText{
-  font-size: 24px;
-  line-height: 1.8;
-  margin-bottom: 14px;
-  color: var(--text);
-}
-
-#quoteAuthor{
-  color: var(--accent);
-  font-weight: 600;
-  margin-bottom: 20px;
-}
-
-.quote-actions{
-  display: flex;
-  justify-content: center;
-}
 
 /* ===== Projects ===== */
 .projects-section{
@@ -954,7 +918,10 @@ textarea:focus{
 body{
   margin: 0;
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  background: var(--bg);
+  background:
+    radial-gradient(circle at 18% 88%, rgba(56, 189, 248, 0.10), transparent 20%),
+    radial-gradient(circle at 62% 12%, rgba(123, 97, 255, 0.08), transparent 22%),
+    var(--bg);
   color: var(--text);
   line-height: 1.6;
 }
@@ -1801,4 +1768,315 @@ body{
 
 [data-theme="light"] .to-top:hover{
   border-color: rgba(123,97,255,0.4);
+}
+
+
+
+#codeContent::after{
+  content: "|";
+  animation: blink 1s infinite;
+  margin-left: 3px;
+}
+
+@keyframes blink{
+  0%,100%{ opacity: 1; }
+  50%{ opacity: 0; }
+}
+
+.code-body pre{
+  margin: 0;
+  white-space: pre-wrap;
+  font-family: "Courier New", monospace;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #f5f7ff;
+}
+
+
+
+
+
+
+
+
+.code-body{
+  flex: 1;
+  overflow: hidden;
+}
+
+
+
+
+.hero-grid{
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.hero-right{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.code-card{
+  width: min(100%, 820px);
+  min-height: 560px;
+  border-radius: 28px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #2a2a63, #1b1f4f);
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow:
+    0 0 50px rgba(123,97,255,0.22),
+    0 24px 70px rgba(0,0,0,0.35);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#codeContent.typing::after{
+  content: "|";
+  color: #7dd3fc;
+  margin-left: 2px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink{
+  0%,100%{ opacity: 1; }
+  50%{ opacity: 0; }
+}
+
+.code-footer{
+  margin-top: auto; /* هذا أهم سطر */
+
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 22px;
+
+  color: #9aa4c4;
+  background: rgba(255,255,255,0.03);
+  font-size: 0.95rem;
+}
+
+.hero-btn{
+  text-decoration: none;
+  color: var(--text);
+  padding: 16px 28px;
+  border-radius: 22px;
+  border: 1px solid rgba(123,97,255,0.12);
+  background: rgba(9, 14, 38, 0.72);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
+  transition: 0.3s ease;
+  font-weight: 600;
+}
+
+/* Clear button in Light Mode */
+/* 🔥 الحل النهائي */
+[data-theme="light"] #contact .btn.outline{
+  background: #ffffff !important;
+  color: #111321 !important;
+  border: 1px solid #dcdcdc !important;
+}
+
+[data-theme="light"] #contact .btn.outline:hover{
+  background: #f5f5f5 !important;
+  border-color: #cfcfcf !important;
+}
+
+.stat-card{
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover{
+  border: 1px solid rgba(123,97,255,0.6); /* بنفسجي */
+  box-shadow: 0 0 20px rgba(123,97,255,0.25);
+  transform: translateY(-3px);
+}
+
+[data-theme="light"] .stat-card{
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+[data-theme="light"] .stat-card:hover{
+  border: 1px solid rgba(123,97,255,0.5);
+  box-shadow: 0 0 15px rgba(123,97,255,0.15);
+}
+
+
+/* ===== Filter Buttons - Light Mode Hover ===== */
+
+[data-theme="light"] .filter-btn{
+  background: rgba(255,255,255,0.7);
+  color: #5b617f;
+  border: 1px solid rgba(0,0,0,0.06);
+  transition: 0.3s ease;
+}
+
+[data-theme="light"] .filter-btn:hover{
+  background: linear-gradient(90deg, rgba(123,97,255,0.15), rgba(56,189,248,0.12));
+  color: #111321;
+  border-color: rgba(123,97,255,0.35);
+  box-shadow: 0 4px 12px rgba(123,97,255,0.15);
+}
+
+[data-theme="light"] .filter-btn.active{
+  background: linear-gradient(90deg, #7b61ff, #38bdf8);
+  color: white;
+  border: none;
+}
+
+
+
+
+
+
+
+
+
+/* ===== Project Modal ===== */
+.project-modal{
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0,0,0,0.55);
+  padding: 30px;
+  overflow-y: auto;
+}
+
+.project-modal-card{
+  position: relative;
+  width: min(100%, 1000px);
+  margin: 30px auto;
+  padding: 34px 36px 32px;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 85% 20%, rgba(123,97,255,0.18), transparent 26%),
+    linear-gradient(180deg, rgba(10,15,40,0.95), rgba(8,12,32,0.96));
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow:
+    0 0 40px rgba(123,97,255,0.14),
+    0 24px 70px rgba(0,0,0,0.35);
+  color: #f5f7ff;
+}
+
+.project-modal-close{
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  border: none;
+  background: transparent;
+  color: #b8bfdc;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.project-modal-close:hover{
+  color: white;
+}
+
+.project-modal-meta{
+  margin: 0 0 10px;
+  color: #9aa4c4;
+  font-size: 1rem;
+  letter-spacing: 0.4px;
+}
+
+.project-modal-title{
+  margin: 0 0 20px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2.8rem, 5vw, 4.4rem);
+  line-height: 1;
+  font-weight: 600;
+  color: #f5f7ff;
+}
+
+.project-modal-description{
+  margin: 0 0 28px;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #a7b1cf;
+  max-width: 900px;
+}
+
+.project-modal-section h3{
+  margin: 0 0 14px;
+  color: #25d0ff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 1rem;
+}
+
+.project-modal-highlights{
+  margin: 0 0 28px 18px;
+  padding: 0;
+  color: #d8dcef;
+}
+
+.project-modal-highlights li{
+  margin-bottom: 10px;
+  line-height: 1.7;
+}
+
+.project-modal-tags{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.project-modal-tags span{
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.06);
+  color: #b8bfdc;
+  font-size: 0.95rem;
+}
+
+/* Light mode */
+[data-theme="light"] .project-modal-card{
+  background:
+    radial-gradient(circle at 85% 20%, rgba(123,97,255,0.10), transparent 26%),
+    linear-gradient(180deg, rgba(255,255,255,0.96), rgba(246,247,252,0.98));
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 18px 45px rgba(0,0,0,0.10);
+  color: #111321;
+}
+
+[data-theme="light"] .project-modal-title{
+  color: #111321;
+}
+
+[data-theme="light"] .project-modal-meta{
+  color: #6a708f;
+}
+
+[data-theme="light"] .project-modal-description{
+  color: #5f6485;
+}
+
+[data-theme="light"] .project-modal-highlights{
+  color: #333a57;
+}
+
+[data-theme="light"] .project-modal-tags span{
+  background: rgba(123,97,255,0.06);
+  border: 1px solid rgba(0,0,0,0.05);
+  color: #5b617f;
+}
+
+@media (max-width: 700px){
+  .project-modal{
+    padding: 16px;
+  }
+
+  .project-modal-card{
+    padding: 24px 20px 24px;
+  }
+
+  .project-modal-description{
+    font-size: 1.05rem;
+  }
 }
