@@ -1,295 +1,278 @@
+'use strict';
+
+/* ════════════════════════════════
+   INIT — no theme toggle, always dark
+════════════════════════════════ */
+document.documentElement.setAttribute('data-theme', 'dark');
+document.getElementById('year').textContent = new Date().getFullYear();
 
 
-// Sets the website theme (light or dark) and stores preference in localStorage
-function setTheme(theme) {
-  document.documentElement.setAttribute("data-theme", theme);
-  localStorage.setItem("theme", theme);
-}
+/* ════════════════════════════════
+   STARFIELD CANVAS
+════════════════════════════════ */
+(function () {
+  const canvas = document.getElementById('starfield');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H, stars = [], mouse = { x: -9999, y: -9999 };
+  const COUNT = 260, PAR = 0.016;
 
+  function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
 
+  function mkStar() {
+    return {
+      x: Math.random() * W, y: Math.random() * H,
+      r: Math.random() * 1.5 + 0.2,
+      a: Math.random() * 0.65 + 0.2,
+      speed: Math.random() * 0.1 + 0.02,
+      depth: Math.random() * 2 + 0.5,
+      tw: Math.random() * Math.PI * 2,
+    };
+  }
+  function init() { stars = Array.from({ length: COUNT }, mkStar); }
 
-// ===== On load =====
-const savedTheme = localStorage.getItem("theme");
-if (savedTheme) setTheme(savedTheme);
+  let shooters = [];
+  function spawnShooter() {
+    shooters.push({
+      x: Math.random() * W * 0.7, y: Math.random() * H * 0.35,
+      vx: Math.random() * 6 + 3, vy: Math.random() * 3 + 1.5, life: 1
+    });
+  }
+  setInterval(spawnShooter, 3000);
 
-document.getElementById("year").textContent = new Date().getFullYear();
+  function loop(t) {
+    ctx.clearRect(0, 0, W, H);
+    const mx = mouse.x / W - 0.5, my = mouse.y / H - 0.5;
 
-
-// Toggle theme when user clicks theme button
-document.getElementById("themeBtn").addEventListener("click", () => {
-  const current = document.documentElement.getAttribute("data-theme");
-  setTheme(current === "light" ? "dark" : "light");
-});
-
-// Opens modal and dynamically updates content based on selected project
-function showProject(projectName) {
-  const modal = document.getElementById("projectModal");
-  const meta = document.getElementById("modalMeta");
-  const title = document.getElementById("modalTitle");
-  const desc = document.getElementById("modalDescription");
-  const highlights = document.getElementById("modalHighlights");
-  const tags = document.getElementById("modalTags");
-
-  if (!modal || !meta || !title || !desc || !highlights || !tags) return;
-
-  const projects = {
-    "Horse App": {
-      meta: "2025 • Full-stack database application",
-      title: "Horse Racing Database System",
-      description:
-        "A database-driven system designed to manage horse races, trainers, stables, and administrative records. The project focused on organizing racing data in a clear and structured way while supporting both admin and guest access.",
-      highlights: [
-        "Designed a relational database structure for race tracking and management",
-        "Implemented role-based access for Admin and Guest users",
-        "Combined database logic with a clean interface for easier data interaction"
-      ],
-      tags: ["Python", "SQL", "Database"]
-    },
-
-    "Club Zone": {
-      meta: "2026 • UI/UX and platform concept",
-      title: "Club Zone",
-      description:
-        "A student club management platform that connects students, clubs, and events in one place. The project focused on improving communication, accessibility, and user experience through a clean and organized interface.",
-      highlights: [
-        "Designed the platform structure and user journey for students and clubs",
-        "Created UI/UX screens in Figma with focus on clarity and usability",
-        "Improved event discovery and club interaction through a unified interface"
-      ],
-      tags: ["UI/UX", "Figma", "Java"]
+    for (const s of stars) {
+      const tw = 0.5 + 0.5 * Math.sin(t * 0.001 + s.tw);
+      const a = s.a * (0.5 + 0.5 * tw);
+      const px = s.x + mx * s.depth * PAR * W;
+      const py = s.y + my * s.depth * PAR * H;
+      ctx.beginPath(); ctx.arc(px, py, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(210,195,255,${a})`; ctx.fill();
+      if (s.r > 1.1) {
+        ctx.beginPath(); ctx.arc(px, py, s.r * 2.8, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(168,85,247,${a * 0.16})`; ctx.fill();
+      }
+      s.y += s.speed;
+      if (s.y > H + 2) { s.y = -2; s.x = Math.random() * W; }
     }
-  };
 
-  const project = projects[projectName];
-
-  if (!project) return;
-
-  meta.textContent = project.meta;
-  title.textContent = project.title;
-  desc.textContent = project.description;
-
-  highlights.innerHTML = "";
-  project.highlights.forEach(item => {
-    const li = document.createElement("li");
-    li.textContent = item;
-    highlights.appendChild(li);
-  });
-
-  tags.innerHTML = "";
-  project.tags.forEach(tag => {
-    const span = document.createElement("span");
-    span.textContent = tag;
-    tags.appendChild(span);
-  });
-
-  modal.style.display = "block";
-}
-
-function closeModal() {
-  const modal = document.getElementById("projectModal");
-  if (modal) modal.style.display = "none";
-}
-
-window.showProject = showProject;
-window.closeModal = closeModal;
-
-function closeModal() {
-  // close when clicking outside the modal-content OR on close button
-  const modal = document.getElementById("projectModal");
-  if (modal) modal.style.display = "none";
-}
-
-// IMPORTANT: expose functions for inline onclick=""
-window.showProject = showProject;
-window.closeModal = closeModal;
-
-
-
-
-// ===== Contact form validation (no backend) =====
-const form = document.getElementById("contactForm");
-const statusEl = document.getElementById("formStatus");
-
-function showError(id, msg) {
-  document.getElementById(id).textContent = msg;
-}
-
-function clearErrors() {
-  showError("nameErr", "");
-  showError("emailErr", "");
-  showError("msgErr", "");
-}
-
-// Contact form validation (client-side only, no backend)
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  clearErrors();
-  statusEl.textContent = "";
-
-  const name = document.getElementById("name").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const message = document.getElementById("message").value.trim();
-
-  let ok = true;
-
-  if (name.length < 2) {
-    showError("nameErr", "Name must be at least 2 characters.");
-    ok = false;
+    for (let i = shooters.length - 1; i >= 0; i--) {
+      const s = shooters[i];
+      const g = ctx.createLinearGradient(s.x, s.y, s.x - s.vx * 12, s.y - s.vy * 12);
+      g.addColorStop(0, `rgba(230,210,255,${s.life})`);
+      g.addColorStop(1, 'rgba(168,85,247,0)');
+      ctx.beginPath(); ctx.moveTo(s.x, s.y); ctx.lineTo(s.x - s.vx * 12, s.y - s.vy * 12);
+      ctx.strokeStyle = g; ctx.lineWidth = 1.5; ctx.stroke();
+      s.x += s.vx; s.y += s.vy; s.life -= 0.027;
+      if (s.life <= 0) shooters.splice(i, 1);
+    }
+    requestAnimationFrame(loop);
   }
 
-  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  if (!emailValid) {
-    showError("emailErr", "Please enter a valid email address.");
-    ok = false;
-  }
+  window.addEventListener('resize', () => { resize(); init(); });
+  window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; }, { passive: true });
+  resize(); init(); requestAnimationFrame(loop);
+})();
 
-  if (message.length < 5) {
-    showError("msgErr", "Message must be at least 5 characters.");
-    ok = false;
-  }
 
-  if (ok) {
-  // Show loading message first
-  statusEl.textContent = "Sending...";
+/* ════════════════════════════════
+   FLOATING NAV BUBBLE
+════════════════════════════════ */
+(function () {
+  const links  = document.querySelectorAll('.nav-link');
+  const bubble = document.getElementById('navBubble');
+  const track  = document.getElementById('navLinks');
+  if (!bubble || !track) return;
+
+  function snap(el) {
+    const tr = track.getBoundingClientRect();
+    const lr = el.getBoundingClientRect();
+    bubble.style.left  = (lr.left - tr.left - 8) + 'px';
+    bubble.style.width = (lr.width + 16) + 'px';
+  }
 
   setTimeout(() => {
-    statusEl.textContent = "✅ Message sent!";
-    form.reset();
-  }, 1000);
+    const a = document.querySelector('.nav-link.active'); if (a) snap(a);
+  }, 60);
 
-} else {
-  statusEl.textContent = "⚠️ Please fix the errors above.";
-}
-});
-
-
-
-// ===== Scroll to top button =====
-const toTopBtn = document.getElementById("toTop");
-window.addEventListener("scroll", () => {
-  toTopBtn.style.display = window.scrollY > 300 ? "block" : "none";
-});
-
-toTopBtn.addEventListener("click", () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-});
-
-
-const filterButtons = document.querySelectorAll(".filter-btn");
-const projectCards = document.querySelectorAll(".project-card");
-
-filterButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const filter = button.dataset.filter;
-
-    // update active button
-    filterButtons.forEach((btn) => btn.classList.remove("active"));
-    button.classList.add("active");
-
-    // show/hide projects
-    projectCards.forEach((card) => {
-      const category = card.dataset.category;
-
-      if (filter === "all" || category === filter) {
-        card.style.display = "block";
-      } else {
-        card.style.display = "none";
-      }
+  links.forEach(l => {
+    l.addEventListener('mouseenter', () => snap(l));
+    l.addEventListener('click', () => {
+      links.forEach(x => x.classList.remove('active'));
+      l.classList.add('active'); snap(l);
     });
   });
+  track.addEventListener('mouseleave', () => {
+    const a = document.querySelector('.nav-link.active'); if (a) snap(a);
+  });
+
+  const sections = ['hero','about','experience','projects','contact'];
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const id = e.target.id;
+        links.forEach(l => l.classList.toggle('active', l.dataset.section === id));
+        const a = document.querySelector('.nav-link.active'); if (a) snap(a);
+      }
+    });
+  }, { threshold: 0.35 });
+  sections.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+})();
+
+
+/* ════════════════════════════════
+   PROJECTS — STICKY NUMBER FLIP
+════════════════════════════════ */
+(function () {
+  const panels = document.querySelectorAll('.proj-panel');
+  const numEl  = document.getElementById('projNum');
+  if (!panels.length || !numEl) return;
+
+  const NUMS = ['01.', '02.', '03.', '04.', '05.'];
+  let current = 0;
+
+  numEl.style.transition = 'transform 0.35s cubic-bezier(0.4,0,0.2,1), opacity 0.25s ease';
+  numEl.textContent = NUMS[0];
+
+  function setNum(idx) {
+    if (idx === current) return;
+    current = idx;
+    numEl.style.transform = 'translateY(-14px)';
+    numEl.style.opacity   = '0';
+    setTimeout(() => {
+      numEl.textContent     = NUMS[idx] || (String(idx + 1).padStart(2, '0') + '.');
+      numEl.style.transform = 'translateY(0)';
+      numEl.style.opacity   = '1';
+      numEl.style.webkitTextStroke = '2px rgba(168,85,247,0.7)';
+    }, 220);
+    setTimeout(() => {
+      numEl.style.webkitTextStroke = '2px rgba(168,85,247,0.35)';
+    }, 750);
+  }
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) setNum(parseInt(e.target.dataset.index, 10));
+    });
+  }, { threshold: 0.4 });
+  panels.forEach(p => obs.observe(p));
+})();
+
+
+/* ════════════════════════════════
+   SCROLL REVEAL
+════════════════════════════════ */
+(function () {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const delay = entry.target.classList.contains('reveal-item')
+          ? Array.from(entry.target.parentNode.children).indexOf(entry.target) * 90 : 0;
+        setTimeout(() => entry.target.classList.add('in-view'), delay);
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal, .reveal-item').forEach(t => obs.observe(t));
+})();
+
+
+/* ════════════════════════════════
+   PROJECT MODAL DATA
+════════════════════════════════ */
+const projectData = {
+  'Sentiment Analyzer': {
+    meta: '2026 · AI / NLP Application',
+    title: 'Smart Tourism Sentiment Analyzer',
+    description: 'An interactive tourist review classification platform powered by NLP and machine learning. Built with Python, Pandas, and NumPy for text preprocessing and data cleaning, then uses Scikit-learn classification algorithms to automatically analyze and categorize customer sentiment.',
+    highlights: [
+      'Applied NLP pipeline: tokenization, stopword removal, TF-IDF vectorization',
+      'Trained and evaluated multiple Scikit-learn classifiers (Naive Bayes, SVM, Logistic Regression)',
+      'Built an interactive interface for real-time sentiment prediction on new reviews',
+      'Focused on data cleaning and preprocessing to handle noisy, real-world tourism text',
+    ],
+    tags: ['Python', 'NLP', 'Scikit-learn', 'Pandas', 'NumPy', 'Machine Learning', 'Text Classification'],
+  },
+  'TripMate': {
+    meta: '2026 · Full-Stack Web Application',
+    title: 'TripMate — Travel Planning App',
+    description: 'A full-stack collaborative travel planning platform where users can organize trips, manage itineraries, and collaborate with others in real time. Built with React and MongoDB with a custom Figma-designed UI focused on intuitive UX.',
+    highlights: [
+      'Full-stack architecture: React frontend, Node.js backend, MongoDB database',
+      'Custom Figma UI/UX design with focus on clarity and collaborative workflows',
+      'Real-time data management for trip itineraries and collaborative editing',
+      'Version control and team collaboration managed through GitHub',
+    ],
+    tags: ['React', 'JavaScript', 'Node.js', 'MongoDB', 'Figma', 'HTML', 'CSS', 'GitHub'],
+  },
+  'Horse Racing DB': {
+    meta: '2025 · Full-Stack Database Application',
+    title: 'Horse Racing Database System',
+    description: 'A full-stack racing administration system built with Streamlit and MySQL. Features role-based access control for Admin and Guest users, custom CSS/HTML styling within Streamlit, and a relational database for managing real-time race data, trainers, and stables.',
+    highlights: [
+      'Designed a normalized relational MySQL database schema for race data management',
+      'Built a Streamlit interface with custom CSS/HTML for a polished look',
+      'Implemented role-based access: Admins manage data; Guests browse records',
+      'Supported real-time queries for races, trainers, horses, and results',
+    ],
+    tags: ['Python', 'Streamlit', 'MySQL', 'SQL', 'CSS', 'Database Design', 'Role-Based Access'],
+  },
+};
+
+function showProject(name) {
+  const d = projectData[name]; if (!d) return;
+  document.getElementById('modalMeta').textContent        = d.meta;
+  document.getElementById('modalTitle').textContent       = d.title;
+  document.getElementById('modalDescription').textContent = d.description;
+  const ul = document.getElementById('modalHighlights'); ul.innerHTML = '';
+  d.highlights.forEach(h => { const li = document.createElement('li'); li.textContent = h; ul.appendChild(li); });
+  const tagsEl = document.getElementById('modalTags'); tagsEl.innerHTML = '';
+  d.tags.forEach(t => { const s = document.createElement('span'); s.textContent = t; tagsEl.appendChild(s); });
+  document.getElementById('projectModal').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('projectModal').style.display = 'none';
+  document.body.style.overflow = '';
+}
+window.showProject = showProject;
+window.closeModal  = closeModal;
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+
+/* ════════════════════════════════
+   CONTACT FORM
+════════════════════════════════ */
+const form = document.getElementById('contactForm');
+const statusEl = document.getElementById('formStatus');
+function setErr(id, msg) { document.getElementById(id).textContent = msg; }
+function clearErrs() { ['nameErr','emailErr','msgErr'].forEach(id => setErr(id,'')); }
+form?.addEventListener('submit', e => {
+  e.preventDefault(); clearErrs(); statusEl.textContent = '';
+  const name    = document.getElementById('name').value.trim();
+  const email   = document.getElementById('email').value.trim();
+  const message = document.getElementById('message').value.trim();
+  let ok = true;
+  if (name.length < 2)   { setErr('nameErr','Name must be at least 2 characters.'); ok=false; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setErr('emailErr','Please enter a valid email.'); ok=false; }
+  if (message.length < 5){ setErr('msgErr','Message must be at least 5 characters.'); ok=false; }
+  if (ok) {
+    statusEl.textContent = 'Sending…';
+    setTimeout(() => { statusEl.textContent = '✦ Message sent!'; form.reset(); }, 1000);
+  } else {
+    statusEl.textContent = '⚠ Please fix the errors above.';
+  }
 });
 
 
-// ===== Typing Effect =====
-const codeEl = document.getElementById("codeContent");
-
-const codeLines = [
-  { n: 1, html: `<span class="kw">const</span> <span class="var">Naba</span> = {` },
-  { n: 2, html: `  role: <span class="str">'Software Engineering Student'</span>,` },
-  { n: 3, html: `  focus: [<span class="str">'web'</span>, <span class="str">'ui/ux'</span>, <span class="str">'frontend'</span>],` },
-  { n: 4, html: `  skills: [<span class="str">'HTML'</span>, <span class="str">'CSS'</span>, <span class="str">'JavaScript'</span>],` },
-  { n: 5, html: `  location: <span class="str">'Dhahran'</span>,` },
-  { n: 6, html: `  loves: <span class="str">'clean design + good user experience'</span>,` },
-  { n: 7, html: `  status: <span class="str">'building better projects'</span>` },
-  { n: 8, html: `};` },
-  { n: 9, html: `<span class="var">Naba</span>.<span class="fn">create</span>();` }
-];
-
-function escapeHtml(text) {
-  return text
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;");
-}
-
-function tokenizeLine(html) {
-  const tokens = [];
-  const regex = /(<span class="[^"]+">.*?<\/span>)/g;
-  const parts = html.split(regex).filter(Boolean);
-
-  for (const part of parts) {
-    if (part.startsWith('<span')) {
-      tokens.push(part);
-    } else {
-      for (const ch of part) {
-        tokens.push(escapeHtml(ch));
-      }
-    }
-  }
-  return tokens;
-}
-
-function renderLines(lines) {
-  const rendered = lines.map(line => {
-    return `<span class="line-num">${line.n}</span> ${line.visible.join("")}`;
-  });
-
-  codeEl.innerHTML = rendered.join("<br>");
-}
-
-function startTypingLoop() {
-  if (!codeEl) return;
-
-  const lines = codeLines.map(line => ({
-    n: line.n,
-    tokens: tokenizeLine(line.html),
-    visible: []
-  }));
-
-  let lineIndex = 0;
-  let tokenIndex = 0;
-
-  codeEl.innerHTML = "";
-
-  function typeStep() {
-    if (lineIndex >= lines.length) {
-      // ⏱️ ينتظر 30 ثانية ثم يعيد
-      setTimeout(() => {
-        startTypingLoop();
-      }, 10000);
-      return;
-    }
-
-    const currentLine = lines[lineIndex];
-
-    if (tokenIndex < currentLine.tokens.length) {
-      currentLine.visible.push(currentLine.tokens[tokenIndex]);
-      tokenIndex++;
-
-      renderLines(lines.slice(0, lineIndex + 1));
-
-      setTimeout(typeStep, 35); // 🐢 سرعة أبطأ
-    } else {
-      lineIndex++;
-      tokenIndex = 0;
-
-      renderLines(lines.slice(0, lineIndex));
-
-      setTimeout(typeStep, 200); // ⏸️ توقف بين السطور
-    }
-  }
-
-  typeStep();
-}
-
-startTypingLoop();
+/* ════════════════════════════════
+   BACK TO TOP
+════════════════════════════════ */
+const toTopBtn = document.getElementById('toTop');
+window.addEventListener('scroll', () => {
+  toTopBtn.classList.toggle('visible', window.scrollY > 340);
+}, { passive: true });
+toTopBtn?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));

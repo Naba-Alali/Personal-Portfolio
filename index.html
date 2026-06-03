@@ -1,320 +1,333 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-  <!-- Basic page setup -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Portfolio</title>
-
- <!-- Google Fonts -->
+  <title>Naba Alali — Software Engineer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- External CSS file -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Playfair+Display:ital,wght@1,400;1,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
 
-  <!-- Navigation bar -->
-  <nav class="nav">
-  <div class="nav-inner">
-    <a class="brand" href="#about">
-  <span class="brand-icon">
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M12 2L13.8 8.2L20 10L13.8 11.8L12 18L10.2 11.8L4 10L10.2 8.2L12 2Z" />
-      <path d="M5 16L5.9 18.1L8 19L5.9 19.9L5 22L4.1 19.9L2 19L4.1 18.1L5 16Z" />
-    </svg>
-  </span>
-  <span class="brand-text">Naba</span>
-</a>
+  <canvas id="starfield"></canvas>
 
-    <div class="nav-center">
-      <a href="#top">Home</a>
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
+  <!-- ══ NAV ══ -->
+  <nav class="nav" id="mainNav">
+    <div class="nav-inner">
+      <a class="brand" href="#hero">
+        <span class="brand-glyph">✦</span>
+        <span class="brand-name">Naba</span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#hero"       class="nav-link active" data-section="hero">Home</a>
+        <a href="#about"      class="nav-link" data-section="about">About</a>
+        <a href="#experience" class="nav-link" data-section="experience">Experience</a>
+        <a href="#projects"   class="nav-link" data-section="projects">Projects</a>
+        <a href="#contact"    class="nav-link" data-section="contact">Contact</a>
+        <span class="nav-bubble" id="navBubble"></span>
+      </div>
+      <div class="nav-right">
+        <a href="#contact" class="cta-btn">Let's talk</a>
+      </div>
     </div>
-
-    <div class="nav-actions">
-      <button id="themeBtn" class="theme-circle" type="button" aria-label="Toggle theme">
-  <span class="theme-icon sun-icon" aria-hidden="true">
-    <svg viewBox="0 0 24 24" fill="none">
-      <circle cx="12" cy="12" r="4"></circle>
-      <path d="M12 2V5"></path>
-      <path d="M12 19V22"></path>
-      <path d="M2 12H5"></path>
-      <path d="M19 12H22"></path>
-      <path d="M4.9 4.9L7 7"></path>
-      <path d="M17 17L19.1 19.1"></path>
-      <path d="M4.9 19.1L7 17"></path>
-      <path d="M17 7L19.1 4.9"></path>
-    </svg>
-  </span>
-
-  <span class="theme-icon moon-icon" aria-hidden="true">
-    <svg viewBox="0 0 24 24" fill="none">
-      <path d="M21 12.8A9 9 0 1 1 11.2 3A7 7 0 1 0 21 12.8Z"></path>
-    </svg>
-  </span>
-</button>
-      <a href="#contact" class="talk-btn">Let's talk</a>
-    </div>
-  </div>
-</nav>
+  </nav>
 
 
-
-
-<!-- Home Section -->
-<section id="top" class="hero-section">
-  <div class="container hero-grid">
-
-    <!-- Left side -->
-    <div class="hero-left">
-      
-      <p class="hero-intro">Hey there, I'm</p>
-
+  <!-- ══ HERO ══ -->
+  <section id="hero" class="hero-section">
+    <div class="hero-content">
+      <p class="hero-eyebrow">Hey there — I'm</p>
       <h1 class="hero-name">Naba</h1>
-
-      <p class="hero-description">
-        Software Engineer Student&amp; Tech Enthusiast,
-        crafting mobile, web, and data experiences with care.
+      <p class="hero-sub">
+        Software Engineering Student at KFUPM · GPA 3.58<br>
+        Building at the intersection of <em>AI, Web &amp; Data</em>
       </p>
-
-      <div class="hero-buttons">
-        <a href="https://github.com/Naba-Alali" target="_blank" rel="noopener" class="hero-btn">GitHub</a>
-        <a href="https://linkedin.com/in/naba-alali" target="_blank" rel="noopener" class="hero-btn">LinkedIn</a>
-        <a href="#contact" class="hero-btn">Email</a>
+      <div class="hero-links">
+        <a href="https://github.com/Naba-Alali" target="_blank" rel="noopener" class="ghost-btn">GitHub ↗</a>
+        <a href="https://www.linkedin.com/in/naba-alali-995a4a3ab/" target="_blank" rel="noopener" class="ghost-btn">LinkedIn ↗</a>
+        <a href="#contact" class="ghost-btn">Email ↗</a>
       </div>
     </div>
-
-    <!-- Right side -->
-    <div class="hero-right">
-      <div class="code-card">
-        <div class="code-top">
-          <span class="dot red"></span>
-          <span class="dot yellow"></span>
-          <span class="dot blue"></span>
-          <span class="file-name">~/portfolio/about.ts</span>
-          <span class="file-type">TS</span>
-        </div>
-
-        <div class="code-body">
-<div class="code-body">
-  <pre><code id="codeContent"></code></pre>
-</div>
-</code></pre>
-        </div>
-
-        <div class="code-footer">
-          <span>connected</span>
-          <span>UTF-8 • Portfolio</span>
-        </div>
+    <div class="marquee-wrap">
+      <div class="marquee-track">
+        <span>Machine Learning</span><span class="dot-sep">✦</span>
+        <span>Full-Stack Dev</span><span class="dot-sep">✦</span>
+        <span>NLP &amp; Sentiment Analysis</span><span class="dot-sep">✦</span>
+        <span>UI/UX Design</span><span class="dot-sep">✦</span>
+        <span>Data Science</span><span class="dot-sep">✦</span>
+        <span>React &amp; Node.js</span><span class="dot-sep">✦</span>
+        <span>Machine Learning</span><span class="dot-sep">✦</span>
+        <span>Full-Stack Dev</span><span class="dot-sep">✦</span>
+        <span>NLP &amp; Sentiment Analysis</span><span class="dot-sep">✦</span>
+        <span>UI/UX Design</span><span class="dot-sep">✦</span>
+        <span>Data Science</span><span class="dot-sep">✦</span>
+        <span>React &amp; Node.js</span><span class="dot-sep">✦</span>
       </div>
     </div>
-
-  </div>
-</section>
+  </section>
 
 
+  <!-- ══ ABOUT ══ -->
+  <section id="about" class="about-section reveal">
+    <div class="container about-grid">
+      <div class="about-left">
+        <p class="section-label">// 01 — ABOUT</p>
+        <h2 class="section-heading">About<br><em>Me</em></h2>
+      </div>
+      <div class="about-right">
+        <p class="about-p">
+          I'm a Software Engineering student at <strong>KFUPM</strong> (GPA 3.58) with a strong foundation
+          in Python, full-stack development, and a growing focus on <strong>AI &amp; machine learning</strong>.
+          I'm actively seeking opportunities to apply ML concepts to real-world problems.
+        </p>
+        <p class="about-p">
+          I care deeply about the intersection of intelligent systems and beautiful interfaces —
+          building things that are not just functional, but genuinely thoughtful and user-centered.
+        </p>
 
-
-
-  <!-- About Section -->
-<section id="about" class="about-section">
-  <div class="container about-grid">
-
-    <!-- Left side -->
-    <div class="about-label">
-      
-      <h2 class="about-big-title">About me</h2>
-    </div>
-
-    <!-- Right side -->
-    <div class="about-content">
-      <p class="about-paragraph">
-        I'm a software engineering student with a strong focus on mobile and web development
-        and a growing passion for data science.
-      </p>
-
-      <p class="about-paragraph">
-        I enjoy building real-world projects and improving my design and development skills.
-        I believe great software is built with creativity, problem-solving, and care for the user.
-      </p>
-
-      <div class="about-stats">
-        <div class="stat-card">
-          <h3>3+</h3>
-          <p>Projects</p>
-        </div>
-
-        <div class="stat-card">
-          <h3>6+</h3>
-          <p>Technologies</p>
-        </div>
-
-        <div class="stat-card">
-          <h3>5</h3>
-          <p>Activites</p>
-        </div>
-
-        <div class="stat-card">
-          <h3>∞</h3>
-          <p>Learning</p>
+        <!-- Skills grid replacing the old stats row -->
+        <div class="skills-grid">
+          <div class="skill-group">
+            <span class="skill-group-label">AI &amp; Data</span>
+            <div class="skill-pills">
+              <span>Python</span><span>Pandas</span><span>NumPy</span>
+              <span>Scikit-learn</span><span>Machine Learning</span><span>NLP</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <span class="skill-group-label">Web &amp; Full-Stack</span>
+            <div class="skill-pills">
+              <span>React</span><span>JavaScript</span><span>HTML</span>
+              <span>CSS</span><span>Node.js</span><span>MongoDB</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <span class="skill-group-label">Tools &amp; Other</span>
+            <div class="skill-pills">
+              <span>SQL / MySQL</span><span>Git &amp; GitHub</span>
+              <span>Figma</span><span>Java</span><span>Streamlit</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-
-  </div>
-</section>
-
-  
-
- <!-- Projects Section -->
-<section id="projects" class="projects-modern-section">
-  <div class="container projects-modern-wrapper">
-
-    <div class="projects-modern-head">
-      <div class="projects-modern-title-box">
-        <h2 class="projects-modern-title">Projects</h2>
-      </div>
-    </div>
-
-    <div class="project-filters">
-      <button class="filter-btn active" type="button" data-filter="all">All</button>
-      <button class="filter-btn" type="button" data-filter="web">WEB APP'S</button>
-      <button class="filter-btn" type="button" data-filter="uiux">UI/UX Design</button>
-    </div>
-
-    <div class="projects-modern-grid">
-
-      <article class="project-card project-modern-card" data-category="web">
-        <div class="project-modern-image-box">
-          <img src="assets/images/Horse-App.png" alt="Horse App project screenshot" class="project-modern-image" />
-        </div>
-
-        <div class="project-modern-content">
-          <div class="project-modern-top">
-            <h3>Horse App</h3>
-            <span class="project-year">2025</span>
-          </div>
-
-          <p>
-            A Horse Racing Database System designed to manage and organize racing information.
-          </p>
-
-          <div class="project-tags">
-            <span>Python</span>
-            <span>SQL</span>
-            <span>Database</span>
-          </div>
-
-          <button class="project-more-btn" type="button" onclick="showProject('Horse App')">
-            More Details
-          </button>
-        </div>
-      </article>
-
-      <article class="project-card project-modern-card" data-category="uiux">
-        <div class="project-modern-image-box">
-          <img src="assets/images/Club-Zone.png" alt="Club Zone project screenshot" class="project-modern-image" />
-        </div>
-
-        <div class="project-modern-content">
-          <div class="project-modern-top">
-            <h3>Club Zone</h3>
-            <span class="project-year">2026</span>
-          </div>
-
-          <p>
-            A club management platform that connects students, clubs, and events in one place.
-          </p>
-
-          <div class="project-tags">
-            <span>UI/UX</span>
-            <span>Java</span>
-            <span>Figma</span>
-          </div>
-
-          <button class="project-more-btn" type="button" onclick="showProject('Club Zone')">
-            More Details
-          </button>
-        </div>
-      </article>
-
-    </div>
-  </div>
-</section>
+  </section>
 
 
-
-
-<div id="projectModal" class="project-modal" onclick="if(event.target.id==='projectModal') closeModal()">
-  <div class="project-modal-card">
-    <button class="project-modal-close" type="button" onclick="closeModal()">×</button>
-
-    <p id="modalMeta" class="project-modal-meta"></p>
-    <h2 id="modalTitle" class="project-modal-title"></h2>
-    <p id="modalDescription" class="project-modal-description"></p>
-
-    <div class="project-modal-section">
-      <h3>Highlights</h3>
-      <ul id="modalHighlights" class="project-modal-highlights"></ul>
-    </div>
-
-    <div id="modalTags" class="project-modal-tags"></div>
-  </div>
-</div>
-
-
-
-  <!-- Contact Section -->
-  <section id="contact" class="section">
+  <!-- ══ EXPERIENCE ══ -->
+  <section id="experience" class="experience-section reveal">
     <div class="container">
-      <h2>Contact</h2>
+      <p class="section-label">// 02 — EXPERIENCE</p>
+      <h2 class="section-heading">Experience<br><em>&amp; Skills</em></h2>
+      <div class="timeline">
 
-      <form id="contactForm" class="card form" novalidate>
-        <div class="two">
-          <div>
+        <div class="timeline-item reveal-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-body">
+            <span class="timeline-year">2022 – Present</span>
+            <h3 class="timeline-title">BSc Software Engineering — KFUPM</h3>
+            <p class="timeline-desc">Studying algorithms, data structures, databases, AI fundamentals, and software architecture. Expected graduation 2027. Currently maintaining a GPA of 3.58/4.0.</p>
+            <div class="timeline-tags"><span>Algorithms</span><span>OOP</span><span>Databases</span><span>Software Design</span><span>AI Fundamentals</span></div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-body">
+            <span class="timeline-year">2024 – 2025</span>
+            <h3 class="timeline-title">Design Leader — Visitation Club</h3>
+            <p class="timeline-desc">Led the design team in creating promotional materials and event branding. Managed social media visuals to ensure a consistent and engaging brand presence across all initiatives.</p>
+            <div class="timeline-tags"><span>Figma</span><span>Visual Design</span><span>Brand Identity</span><span>Team Lead</span></div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-body">
+            <span class="timeline-year">2025</span>
+            <h3 class="timeline-title">Member — KFUPM World</h3>
+            <p class="timeline-desc">Designed visual and promotional content for a university-wide international event promoting cultural exchange among students from 10+ countries, covering cultural, arts, and entertainment tracks.</p>
+            <div class="timeline-tags"><span>Event Design</span><span>Content Creation</span><span>Cultural Exchange</span></div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-body">
+            <span class="timeline-year">2022 – 2023</span>
+            <h3 class="timeline-title">Member — Toastmasters Club</h3>
+            <p class="timeline-desc">Developed public speaking and communication skills through regular structured speeches, impromptu sessions, and professional presentations.</p>
+            <div class="timeline-tags"><span>Public Speaking</span><span>Communication</span><span>Leadership</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══ PROJECTS — sticky scroll ══ -->
+  <section id="projects" class="projects-section">
+    <div class="projects-header container">
+      <p class="section-label">// 03 — PROJECTS</p>
+      <h2 class="section-heading">Selected<br><em>Projects</em></h2>
+    </div>
+
+    <div class="projects-scroll-outer" id="projectsOuter">
+
+      <!-- LEFT sticky number -->
+      <div class="proj-left" id="projLeft">
+        <div class="proj-num-wrap">
+          <span class="proj-num" id="projNum">01.</span>
+        </div>
+      </div>
+
+      <!-- RIGHT scrolling panels -->
+      <div class="proj-right" id="projRight">
+
+        <!-- Project 01 -->
+        <div class="proj-panel" data-index="0">
+          <div class="proj-panel-inner">
+            <div class="proj-info">
+              <div class="proj-meta-row">
+                <h3 class="proj-title">Sentiment Analyzer</h3>
+                <span class="proj-year">2026</span>
+              </div>
+              <p class="proj-desc">
+                An NLP-powered tourist review classification platform. Built with Python, Pandas, NumPy, and
+                Scikit-learn to automatically preprocess text and categorize customer sentiment using
+                machine learning classification algorithms.
+              </p>
+              <div class="proj-tags">
+                <span>Python</span><span>NLP</span><span>Scikit-learn</span><span>Pandas</span><span>NumPy</span><span>ML</span>
+              </div>
+              <button class="proj-detail-btn" onclick="showProject('Sentiment Analyzer')">View Details →</button>
+            </div>
+            <div class="proj-img-wrap">
+              <div class="img-glow-frame">
+                <img src="assets/images/ai-web.png" alt="AI Website" class="proj-img" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 02 -->
+        <div class="proj-panel" data-index="1">
+          <div class="proj-panel-inner">
+            <div class="proj-info">
+              <div class="proj-meta-row">
+                <h3 class="proj-title">TripMate</h3>
+                <span class="proj-year">2026</span>
+              </div>
+              <p class="proj-desc">
+                A full-stack collaborative travel planning web application. Built with React, HTML, CSS, and
+                JavaScript, integrated with MongoDB, featuring a custom Figma-designed UI/UX and
+                version control via GitHub.
+              </p>
+              <div class="proj-tags">
+                <span>React</span><span>JavaScript</span><span>MongoDB</span><span>Figma</span><span>Node.js</span>
+              </div>
+              <button class="proj-detail-btn" onclick="showProject('TripMate')">View Details →</button>
+            </div>
+           <div class="proj-img-wrap">
+              <div class="img-glow-frame">
+                <img src="assets/images/TripMate.png" alt="TripMate" class="proj-img" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 03 -->
+        <div class="proj-panel" data-index="2">
+          <div class="proj-panel-inner">
+            <div class="proj-info">
+              <div class="proj-meta-row">
+                <h3 class="proj-title">Horse Racing DB</h3>
+                <span class="proj-year">2025</span>
+              </div>
+              <p class="proj-desc">
+                A full-stack racing database system built with Streamlit and MySQL. Features role-based
+                access for Admins and Guests, custom CSS/HTML styling, and a relational database
+                for managing real-time race data.
+              </p>
+              <div class="proj-tags">
+                <span>Python</span><span>Streamlit</span><span>MySQL</span><span>SQL</span>
+              </div>
+              <button class="proj-detail-btn" onclick="showProject('Horse Racing DB')">View Details →</button>
+            </div>
+            <div class="proj-img-wrap">
+              <div class="img-glow-frame">
+                <img src="assets/images/Horse-App.png" alt="Horse Racing DB" class="proj-img" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /proj-right -->
+    </div><!-- /projects-scroll-outer -->
+  </section>
+
+
+  <!-- ══ PROJECT MODAL ══ -->
+  <div id="projectModal" class="project-modal" onclick="if(event.target.id==='projectModal') closeModal()">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <p id="modalMeta" class="modal-meta"></p>
+      <h2 id="modalTitle" class="modal-title"></h2>
+      <p id="modalDescription" class="modal-desc"></p>
+      <div class="modal-section">
+        <h4 class="modal-sub">Highlights</h4>
+        <ul id="modalHighlights" class="modal-highlights"></ul>
+      </div>
+      <div id="modalTags" class="modal-tags"></div>
+    </div>
+  </div>
+
+
+  <!-- ══ CONTACT ══ -->
+  <section id="contact" class="contact-section reveal">
+    <div class="container">
+      <p class="section-label">// 04 — CONTACT</p>
+      <h2 class="section-heading">Let's<br><em>Talk</em></h2>
+      <form id="contactForm" class="contact-form" novalidate>
+        <div class="form-row">
+          <div class="form-group">
             <label for="name">Name</label>
             <input id="name" name="name" type="text" placeholder="Your name" required />
             <small class="error" id="nameErr"></small>
           </div>
-
-          <div>
+          <div class="form-group">
             <label for="email">Email</label>
             <input id="email" name="email" type="email" placeholder="you@example.com" required />
             <small class="error" id="emailErr"></small>
           </div>
         </div>
-
-        <div>
+        <div class="form-group">
           <label for="message">Message</label>
-          <textarea id="message" name="message" rows="5" placeholder="Write your message..." required></textarea>
+          <textarea id="message" name="message" rows="6" placeholder="Write your message..."></textarea>
           <small class="error" id="msgErr"></small>
         </div>
-
         <div class="form-actions">
-          <button class="btn" type="submit">Send</button>
-          <button class="btn outline" type="reset">Clear</button>
-          <span id="formStatus" class="status" aria-live="polite"></span>
+          <button class="submit-btn" type="submit">Send Message</button>
+          <button class="clear-btn" type="reset">Clear</button>
+          <span id="formStatus" class="form-status" aria-live="polite"></span>
         </div>
       </form>
     </div>
   </section>
 
-  <!-- Footer -->
+
+  <!-- ══ FOOTER ══ -->
   <footer class="footer">
-    <div class="container footer-row">
-      <p>© <span id="year"></span> Naba Alali</p>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Naba Alali — Built with care.</span>
+      <span class="footer-glyph">✦</span>
     </div>
   </footer>
 
-  <!-- Back to top button -->
-  <button id="toTop" class="to-top" type="button">Back to top ↑</button>
-
-  <!-- External JavaScript file -->
+  <button id="toTop" class="to-top" type="button" aria-label="Back to top">↑</button>
   <script src="js/script.js"></script>
 </body>
 </html>
