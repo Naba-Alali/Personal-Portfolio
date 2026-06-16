@@ -8,6 +8,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Playfair+Display:ital,wght@1,400;1,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css" />
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
 
@@ -23,7 +25,7 @@
       <div class="nav-links" id="navLinks">
         <a href="#hero"       class="nav-link active" data-section="hero">Home</a>
         <a href="#about"      class="nav-link" data-section="about">About</a>
-        <a href="#experience" class="nav-link" data-section="experience">Experience</a>
+        <a href="#experience" class="nav-link" data-section="experience">Journey</a>
         <a href="#projects"   class="nav-link" data-section="projects">Projects</a>
         <a href="#contact"    class="nav-link" data-section="contact">Contact</a>
         <span class="nav-bubble" id="navBubble"></span>
@@ -42,28 +44,28 @@
       <h1 class="hero-name">Naba</h1>
       <p class="hero-sub">
         Software Engineering Student at KFUPM · GPA 3.58<br>
-        Building at the intersection of <em>AI, Web &amp; Data</em>
+        Passionate about <em>Web Development &amp; UI/UX Design</em>
       </p>
       <div class="hero-links">
         <a href="https://github.com/Naba-Alali" target="_blank" rel="noopener" class="ghost-btn">GitHub ↗</a>
-        <a href="https://www.linkedin.com/in/naba-alali-995a4a3ab/" target="_blank" rel="noopener" class="ghost-btn">LinkedIn ↗</a>
+        <a href="https://linkedin.com/in/naba-alali" target="_blank" rel="noopener" class="ghost-btn">LinkedIn ↗</a>
         <a href="#contact" class="ghost-btn">Email ↗</a>
       </div>
     </div>
     <div class="marquee-wrap">
       <div class="marquee-track">
-        <span>Machine Learning</span><span class="dot-sep">✦</span>
         <span>Full-Stack Dev</span><span class="dot-sep">✦</span>
-        <span>NLP &amp; Sentiment Analysis</span><span class="dot-sep">✦</span>
         <span>UI/UX Design</span><span class="dot-sep">✦</span>
-        <span>Data Science</span><span class="dot-sep">✦</span>
         <span>React &amp; Node.js</span><span class="dot-sep">✦</span>
-        <span>Machine Learning</span><span class="dot-sep">✦</span>
+        <span>Figma</span><span class="dot-sep">✦</span>
+        <span>Software Engineering</span><span class="dot-sep">✦</span>
+        <span>Web Development</span><span class="dot-sep">✦</span>
         <span>Full-Stack Dev</span><span class="dot-sep">✦</span>
-        <span>NLP &amp; Sentiment Analysis</span><span class="dot-sep">✦</span>
         <span>UI/UX Design</span><span class="dot-sep">✦</span>
-        <span>Data Science</span><span class="dot-sep">✦</span>
         <span>React &amp; Node.js</span><span class="dot-sep">✦</span>
+        <span>Figma</span><span class="dot-sep">✦</span>
+        <span>Software Engineering</span><span class="dot-sep">✦</span>
+        <span>Web Development</span><span class="dot-sep">✦</span>
       </div>
     </div>
   </section>
@@ -79,35 +81,33 @@
       <div class="about-right">
         <p class="about-p">
           I'm a Software Engineering student at <strong>KFUPM</strong> (GPA 3.58) with a strong foundation
-          in Python, full-stack development, and a growing focus on <strong>AI &amp; machine learning</strong>.
-          I'm actively seeking opportunities to apply ML concepts to real-world problems.
+          in web development and a passion for <strong>UI/UX design</strong>.
+          I'm seeking a training opportunity to gain practical experience and contribute to real-world projects.
         </p>
         <p class="about-p">
-          I care deeply about the intersection of intelligent systems and beautiful interfaces —
-          building things that are not just functional, but genuinely thoughtful and user-centered.
+          I love crafting interfaces that feel intuitive and purposeful — combining clean code
+          with thoughtful design to build experiences people actually enjoy using.
         </p>
 
-        <!-- Skills grid replacing the old stats row -->
         <div class="skills-grid">
           <div class="skill-group">
-            <span class="skill-group-label">AI &amp; Data</span>
+            <span class="skill-group-label">Programming</span>
             <div class="skill-pills">
-              <span>Python</span><span>Pandas</span><span>NumPy</span>
-              <span>Scikit-learn</span><span>Machine Learning</span><span>NLP</span>
+              <span>Python</span><span>Java</span><span>JavaScript</span>
             </div>
           </div>
           <div class="skill-group">
-            <span class="skill-group-label">Web &amp; Full-Stack</span>
+            <span class="skill-group-label">Web Development</span>
             <div class="skill-pills">
-              <span>React</span><span>JavaScript</span><span>HTML</span>
-              <span>CSS</span><span>Node.js</span><span>MongoDB</span>
+              <span>React</span><span>HTML</span><span>CSS</span>
+              <span>Node.js</span><span>MongoDB</span>
             </div>
           </div>
           <div class="skill-group">
-            <span class="skill-group-label">Tools &amp; Other</span>
+            <span class="skill-group-label">Tools &amp; Design</span>
             <div class="skill-pills">
               <span>SQL / MySQL</span><span>Git &amp; GitHub</span>
-              <span>Figma</span><span>Java</span><span>Streamlit</span>
+              <span>Figma</span><span>Streamlit</span><span>Data Structures &amp; Algorithms</span>
             </div>
           </div>
         </div>
@@ -119,7 +119,7 @@
   <!-- ══ EXPERIENCE ══ -->
   <section id="experience" class="experience-section reveal">
     <div class="container">
-      <p class="section-label">// 02 — EXPERIENCE</p>
+      <p class="section-label">// 02 — JOURNEY</p>
       <h2 class="section-heading">Experience<br><em>&amp; Skills</em></h2>
       <div class="timeline">
 
@@ -192,22 +192,25 @@
           <div class="proj-panel-inner">
             <div class="proj-info">
               <div class="proj-meta-row">
-                <h3 class="proj-title">Sentiment Analyzer</h3>
+                <h3 class="proj-title">TripMate</h3>
                 <span class="proj-year">2026</span>
               </div>
               <p class="proj-desc">
-                An NLP-powered tourist review classification platform. Built with Python, Pandas, NumPy, and
-                Scikit-learn to automatically preprocess text and categorize customer sentiment using
-                machine learning classification algorithms.
+                A full-stack collaborative travel planning web application. Built with React, HTML, CSS, and
+                JavaScript integrated with MongoDB, featuring a custom Figma-designed UI focused on
+                intuitive UX and managed via GitHub for version control.
               </p>
               <div class="proj-tags">
-                <span>Python</span><span>NLP</span><span>Scikit-learn</span><span>Pandas</span><span>NumPy</span><span>ML</span>
+                <span>React</span><span>JavaScript</span><span>HTML</span><span>CSS</span><span>MongoDB</span><span>Figma</span>
               </div>
-              <button class="proj-detail-btn" onclick="showProject('Sentiment Analyzer')">View Details →</button>
+              <button class="proj-detail-btn" onclick="showProject('TripMate')">View Details →</button>
             </div>
             <div class="proj-img-wrap">
               <div class="img-glow-frame">
-                <img src="assets/images/ai-web.png" alt="AI Website" class="proj-img" />
+                <div class="proj-img-placeholder web-placeholder">
+                  <span class="placeholder-icon">✈️</span>
+                  <span class="placeholder-label">TripMate — Travel Planning App</span>
+                </div>
               </div>
             </div>
           </div>
@@ -218,22 +221,22 @@
           <div class="proj-panel-inner">
             <div class="proj-info">
               <div class="proj-meta-row">
-                <h3 class="proj-title">TripMate</h3>
-                <span class="proj-year">2026</span>
+                <h3 class="proj-title">Horse Racing DB</h3>
+                <span class="proj-year">2025</span>
               </div>
               <p class="proj-desc">
-                A full-stack collaborative travel planning web application. Built with React, HTML, CSS, and
-                JavaScript, integrated with MongoDB, featuring a custom Figma-designed UI/UX and
-                version control via GitHub.
+                A full-stack racing database system built with Streamlit and MySQL. Features role-based
+                access for Admins and Guests, custom CSS/HTML styling, and a relational database
+                for managing real-time racing data, trainers, and stables.
               </p>
               <div class="proj-tags">
-                <span>React</span><span>JavaScript</span><span>MongoDB</span><span>Figma</span><span>Node.js</span>
+                <span>Python</span><span>Streamlit</span><span>MySQL</span><span>SQL</span><span>HTML</span><span>CSS</span>
               </div>
-              <button class="proj-detail-btn" onclick="showProject('TripMate')">View Details →</button>
+              <button class="proj-detail-btn" onclick="showProject('Horse Racing DB')">View Details →</button>
             </div>
-           <div class="proj-img-wrap">
+            <div class="proj-img-wrap">
               <div class="img-glow-frame">
-                <img src="assets/images/TripMate.png" alt="TripMate" class="proj-img" />
+                <img src="assets/images/Horse-App.png" alt="Horse Racing DB" class="proj-img" />
               </div>
             </div>
           </div>
@@ -244,22 +247,25 @@
           <div class="proj-panel-inner">
             <div class="proj-info">
               <div class="proj-meta-row">
-                <h3 class="proj-title">Horse Racing DB</h3>
+                <h3 class="proj-title">Habitly</h3>
                 <span class="proj-year">2025</span>
               </div>
               <p class="proj-desc">
-                A full-stack racing database system built with Streamlit and MySQL. Features role-based
-                access for Admins and Guests, custom CSS/HTML styling, and a relational database
-                for managing real-time race data.
+                A gamified habit tracker web app with a sarcastic feedback system to keep users
+                accountable. Features a multi-page layout, Chart.js visualizations for progress tracking,
+                and a custom dark-theme UI designed in Figma.
               </p>
               <div class="proj-tags">
-                <span>Python</span><span>Streamlit</span><span>MySQL</span><span>SQL</span>
+                <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Chart.js</span><span>Figma</span>
               </div>
-              <button class="proj-detail-btn" onclick="showProject('Horse Racing DB')">View Details →</button>
+              <button class="proj-detail-btn" onclick="showProject('Habitly')">View Details →</button>
             </div>
             <div class="proj-img-wrap">
               <div class="img-glow-frame">
-                <img src="assets/images/Horse-App.png" alt="Horse Racing DB" class="proj-img" />
+                <div class="proj-img-placeholder web-placeholder">
+                  <span class="placeholder-icon">✅</span>
+                  <span class="placeholder-label">Habitly — Habit Tracker App</span>
+                </div>
               </div>
             </div>
           </div>

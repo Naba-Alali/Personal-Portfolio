@@ -184,29 +184,17 @@ document.getElementById('year').textContent = new Date().getFullYear();
    PROJECT MODAL DATA
 ════════════════════════════════ */
 const projectData = {
-  'Sentiment Analyzer': {
-    meta: '2026 · AI / NLP Application',
-    title: 'Smart Tourism Sentiment Analyzer',
-    description: 'An interactive tourist review classification platform powered by NLP and machine learning. Built with Python, Pandas, and NumPy for text preprocessing and data cleaning, then uses Scikit-learn classification algorithms to automatically analyze and categorize customer sentiment.',
-    highlights: [
-      'Applied NLP pipeline: tokenization, stopword removal, TF-IDF vectorization',
-      'Trained and evaluated multiple Scikit-learn classifiers (Naive Bayes, SVM, Logistic Regression)',
-      'Built an interactive interface for real-time sentiment prediction on new reviews',
-      'Focused on data cleaning and preprocessing to handle noisy, real-world tourism text',
-    ],
-    tags: ['Python', 'NLP', 'Scikit-learn', 'Pandas', 'NumPy', 'Machine Learning', 'Text Classification'],
-  },
   'TripMate': {
     meta: '2026 · Full-Stack Web Application',
     title: 'TripMate — Travel Planning App',
-    description: 'A full-stack collaborative travel planning platform where users can organize trips, manage itineraries, and collaborate with others in real time. Built with React and MongoDB with a custom Figma-designed UI focused on intuitive UX.',
+    description: 'A full-stack collaborative travel planning platform where users can organize trips, manage itineraries, and collaborate in real time. Built with React and MongoDB with a custom Figma-designed UI focused on intuitive UX and managed via GitHub.',
     highlights: [
       'Full-stack architecture: React frontend, Node.js backend, MongoDB database',
-      'Custom Figma UI/UX design with focus on clarity and collaborative workflows',
-      'Real-time data management for trip itineraries and collaborative editing',
+      'Custom Figma UI/UX design prioritizing clarity and collaborative workflows',
+      'Real-time data management for trip itineraries and shared planning',
       'Version control and team collaboration managed through GitHub',
     ],
-    tags: ['React', 'JavaScript', 'Node.js', 'MongoDB', 'Figma', 'HTML', 'CSS', 'GitHub'],
+    tags: ['React', 'HTML', 'CSS', 'JavaScript', 'MongoDB', 'Figma', 'GitHub'],
   },
   'Horse Racing DB': {
     meta: '2025 · Full-Stack Database Application',
@@ -214,11 +202,23 @@ const projectData = {
     description: 'A full-stack racing administration system built with Streamlit and MySQL. Features role-based access control for Admin and Guest users, custom CSS/HTML styling within Streamlit, and a relational database for managing real-time race data, trainers, and stables.',
     highlights: [
       'Designed a normalized relational MySQL database schema for race data management',
-      'Built a Streamlit interface with custom CSS/HTML for a polished look',
-      'Implemented role-based access: Admins manage data; Guests browse records',
+      'Built a Streamlit interface with custom CSS/HTML for a polished visual experience',
+      'Implemented role-based access: Admins manage all data; Guests browse records',
       'Supported real-time queries for races, trainers, horses, and results',
     ],
-    tags: ['Python', 'Streamlit', 'MySQL', 'SQL', 'CSS', 'Database Design', 'Role-Based Access'],
+    tags: ['Python', 'Streamlit', 'MySQL', 'SQL', 'HTML', 'CSS'],
+  },
+  'Habitly': {
+    meta: '2025 · Frontend Web Application',
+    title: 'Habitly — Habit Tracker Web App',
+    description: 'A gamified productivity app with a sarcastic feedback system designed to keep users accountable in a fun way. Features a multi-page layout, Chart.js data visualizations for progress tracking, and a custom dark-theme UI designed from scratch in Figma.',
+    highlights: [
+      'Gamified habit-tracking system with a unique sarcastic AI feedback personality',
+      'Multi-page layout with smooth navigation and persistent state handling',
+      'Chart.js visualizations showing habit streaks, completion rates, and progress over time',
+      'Custom dark-theme UI fully designed in Figma before implementation',
+    ],
+    tags: ['HTML', 'CSS', 'JavaScript', 'Chart.js', 'Figma'],
   },
 };
 
@@ -244,26 +244,71 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
 
 
 /* ════════════════════════════════
-   CONTACT FORM
+   CONTACT FORM — EmailJS
+   ─────────────────────────────────
+   SETUP (one-time, 5 minutes):
+   1. Go to https://www.emailjs.com and create a free account
+   2. Add a service: Gmail → connect your Nabaalali99@gmail.com
+      → copy the "Service ID" → paste below as EMAILJS_SERVICE_ID
+   3. Create an email template:
+      Subject:  New message from {{from_name}}
+      Body:     Name: {{from_name}}
+                Email: {{from_email}}
+                Message: {{message}}
+      → copy the "Template ID" → paste below as EMAILJS_TEMPLATE_ID
+   4. Go to Account → copy your "Public Key" → paste below as EMAILJS_PUBLIC_KEY
 ════════════════════════════════ */
-const form = document.getElementById('contactForm');
+
+const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';   // ← replace
+const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';  // ← replace
+const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';   // ← replace
+
+const form     = document.getElementById('contactForm');
 const statusEl = document.getElementById('formStatus');
+
 function setErr(id, msg) { document.getElementById(id).textContent = msg; }
 function clearErrs() { ['nameErr','emailErr','msgErr'].forEach(id => setErr(id,'')); }
-form?.addEventListener('submit', e => {
-  e.preventDefault(); clearErrs(); statusEl.textContent = '';
+
+form?.addEventListener('submit', async e => {
+  e.preventDefault();
+  clearErrs();
+  statusEl.textContent = '';
+
   const name    = document.getElementById('name').value.trim();
   const email   = document.getElementById('email').value.trim();
   const message = document.getElementById('message').value.trim();
   let ok = true;
-  if (name.length < 2)   { setErr('nameErr','Name must be at least 2 characters.'); ok=false; }
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setErr('emailErr','Please enter a valid email.'); ok=false; }
-  if (message.length < 5){ setErr('msgErr','Message must be at least 5 characters.'); ok=false; }
-  if (ok) {
-    statusEl.textContent = 'Sending…';
-    setTimeout(() => { statusEl.textContent = '✦ Message sent!'; form.reset(); }, 1000);
-  } else {
-    statusEl.textContent = '⚠ Please fix the errors above.';
+
+  if (name.length < 2)
+    { setErr('nameErr', 'Name must be at least 2 characters.'); ok = false; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+    { setErr('emailErr', 'Please enter a valid email.'); ok = false; }
+  if (message.length < 5)
+    { setErr('msgErr', 'Message must be at least 5 characters.'); ok = false; }
+
+  if (!ok) { statusEl.textContent = '⚠ Please fix the errors above.'; return; }
+
+  // disable button while sending
+  const btn = form.querySelector('.submit-btn');
+  btn.disabled = true;
+  statusEl.textContent = 'Sending…';
+
+  try {
+    await emailjs.send(
+      EMAILJS_SERVICE_ID,
+      EMAILJS_TEMPLATE_ID,
+      { from_name: name, from_email: email, message },
+      EMAILJS_PUBLIC_KEY
+    );
+    statusEl.textContent = '✦ Message sent! I\'ll get back to you soon.';
+    statusEl.style.color = '#a855f7';
+    form.reset();
+  } catch (err) {
+    console.error('EmailJS error:', err);
+    statusEl.textContent = '✕ Something went wrong. Try emailing me directly at Nabaalali99@gmail.com';
+    statusEl.style.color = '#f87171';
+  } finally {
+    btn.disabled = false;
   }
 });
 
